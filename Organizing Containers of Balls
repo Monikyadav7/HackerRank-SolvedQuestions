@@ -1,0 +1,54 @@
+// Organizing Containers of Balls:
+
+// first convert all the balls to 0 and 1, [0] == 0, [1] == 1;
+// second get the no of balls 1 container can hold;
+// third combine and sort all the balls;
+// then add all 0's in 1 list and 1's in other and check if both containers
+// have equal items, if yes then return 'possible', else return 'impossible';
+
+void main(){
+  int n = 3;
+  List<List<int>> containers = [[1, 3, 1], [2, 1, 2], [3, 3, 3]];
+  List<List<int>> newContainers = List.generate(n, (i) => [], growable: false);
+  List listOfnos = [];
+  List listOfBallsC = [];
+  
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < containers[i].length; j++){
+     
+      for(int k = 0; k < containers[i][j]; k++){
+        if(containers[i][j] != 0){
+          listOfnos.add(j);
+          newContainers[i].add(j);
+        }
+      }
+    }
+  }
+  print(listOfnos);
+ listOfnos.sort();
+  for(int m = 0; m < n; m++){
+    listOfBallsC.clear();
+    for(int o = 0; o < listOfnos.length; o++){
+    if(listOfnos[o] == m){
+      listOfBallsC.add(listOfnos[m]);
+    }
+    }
+      print('1 === newContainers[m].length = ${newContainers[m].length} > listOfBallsC.length = ${listOfBallsC.length}');
+   if(newContainers[m].length > listOfBallsC.length){
+     print('newContainers[m].length = ${newContainers[m].length} > listOfBallsC.length = ${listOfBallsC.length}');
+     print('Impossible');
+     break;
+   }else if(newContainers[m].length < listOfBallsC.length){
+     print('newContainers[m].length = ${newContainers[m].length} < listOfBallsC.length = ${listOfBallsC.length}');
+     print('Impossible');
+     break;
+   }else{
+     
+     if(m == n-1){
+       print('Possible');
+       break;
+     }
+     continue;
+   }
+    }
+}
