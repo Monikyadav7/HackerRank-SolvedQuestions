@@ -1,0 +1,42 @@
+void main(){
+  String outPut = '';
+  int count = 0;
+  int row = 0;
+  int column = 0;
+  String s = 'haveaniceday';
+  int j = 1;
+  for(int i = 1; i < s.trim().length+1; i++){
+    j = i;
+    while(j < s.trim().length){
+      if(i > j){
+        break;
+      }
+      else if(i * j >= s.trim().length){
+        if(row == 0){
+          row = i;
+          column = j;
+        }else{
+          if(i < row || j < column){
+            row = i;
+            column = j;
+          }
+        }
+      }
+      j++;
+    }
+  }
+//   print('$row rows && $column columns');
+  for(int k = 0; k < s.length; k++){
+    if(count == column){
+//       print('${outPut.length} == $count');
+      outPut +='\n';
+      count = 0;
+      outPut += s[k];
+      count++;
+    }else{
+      count++;
+      outPut += s[k];
+    }
+  }
+  print(outPut);
+}
