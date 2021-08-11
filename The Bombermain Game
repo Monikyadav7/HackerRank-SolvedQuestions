@@ -1,0 +1,53 @@
+void main(){
+ int r = 6, c = 7, n = 3;
+ int second = 1;
+ List<int> listI = [];
+ List<int> listJ = [];
+ List<String> grid =['.......', 
+                     '...0...', 
+                     '....0..', 
+                     '.......', 
+                     '00.....', 
+                     '00.....'];
+ List<List<String>> newGrid = [];
+  grid.forEach((i){
+    newGrid.add(i.split(''));
+  });
+  
+  while(n > 0){
+    for(int i = 0; i < newGrid.length; i++){
+      for(int j = 0; j < newGrid[i].length; j++){
+        if(second == 1){
+          if(newGrid[i][j] == '0'){
+            listI.add(i);
+            listJ.add(j);
+          }
+        }else if(second == 2){
+          if(newGrid[i][j] == '.'){
+            newGrid[i][j] = '0';
+          }
+        }else if(second == 3){
+          for(int k = 0; k < listI.length; k++){
+            newGrid[listI[k]][listJ[k]] = '.';
+            if(newGrid[listI[k]] != 0){
+            newGrid[listI[k]-1][listJ[k]] = '.';
+            }
+            if(newGrid[listI[k]] != newGrid.last){
+            newGrid[listI[k]+1][listJ[k]] = '.';
+            }
+            if(newGrid[listI[k]].length != newGrid[listI[k]][listJ[k]]){
+              print(newGrid[listI[k]][listJ[k]].length);
+            newGrid[listI[k]][listJ[k]-1] = '.';
+            }
+//             if(newGrid[listI[k]][listJ[k]] != newGrid[listI[k]][listJ[k]].length){
+//             newGrid[listI[k]][listJ[k]+1] = '.';
+//             }
+          }
+        }
+      }
+    }
+    second++;
+    n--;
+  }
+  print(newGrid);
+}
