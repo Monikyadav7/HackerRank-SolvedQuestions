@@ -1,5 +1,5 @@
 void main(){
- int r = 6, c = 7, n = 3;
+ int r = 6, c = 7, n = 5;
  int second = 1;
  List<int> listI = [];
  List<int> listJ = [];
@@ -18,18 +18,24 @@ void main(){
     for(int i = 0; i < newGrid.length; i++){
       for(int j = 0; j < newGrid[i].length; j++){
         if(second == 1){
+          continue;
+        }
+        else if(second.isEven){
           if(newGrid[i][j] == '0'){
             listI.add(i);
             listJ.add(j);
           }
-        }else if(second == 2){
-          if(newGrid[i][j] == '.'){
+          else if(newGrid[i][j] == '.'){
             newGrid[i][j] = '0';
           }
-        }else if(second == 3){
+        }else if(second.isOdd){
           for(int k = 0; k < listI.length; k++){
             newGrid[listI[k]][listJ[k]] = '.';
-            if(newGrid[listI[k]] != 0){
+            print('1st == ${newGrid[listI[k]]}');
+            print('2nd == ${newGrid[listI[k]]}');
+            print('3rd == ${listJ[k]}');
+            print('4th == ${listJ[k]} and ${c-1}');
+            if(listI[k] != 0){
             newGrid[listI[k]-1][listJ[k]] = '.';
             }
             if(newGrid[listI[k]] != newGrid.last){
@@ -38,11 +44,14 @@ void main(){
             if(listJ[k] != 0){
             newGrid[listI[k]][listJ[k]-1] = '.';
             }
-            if(newGrid[listJ[k]].length-1 != listJ[k]){
+            if(c-1 != listJ[k]){
             newGrid[listI[k]][listJ[k]+1] = '.';
             }
           }
+          listI.clear();
+          listJ.clear();
         }
+        
       }
     }
     second++;
