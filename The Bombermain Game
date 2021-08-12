@@ -35,13 +35,12 @@ void main(){
             if(newGrid[listI[k]] != newGrid.last){
             newGrid[listI[k]+1][listJ[k]] = '.';
             }
-            if(newGrid[listI[k]].length != newGrid[listI[k]][listJ[k]]){
-              print(newGrid[listI[k]][listJ[k]].length);
+            if(listJ[k] != 0){
             newGrid[listI[k]][listJ[k]-1] = '.';
             }
-//             if(newGrid[listI[k]][listJ[k]] != newGrid[listI[k]][listJ[k]].length){
-//             newGrid[listI[k]][listJ[k]+1] = '.';
-//             }
+            if(newGrid[listJ[k]].length-1 != listJ[k]){
+            newGrid[listI[k]][listJ[k]+1] = '.';
+            }
           }
         }
       }
